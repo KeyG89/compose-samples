@@ -30,7 +30,7 @@ fun VerticalGrid(
     content: @Composable () -> Unit
 ) {
     Layout(
-        children = content,
+        content = content,
         modifier = modifier
     ) { measurables, constraints ->
         val itemWidth = constraints.maxWidth / columns
@@ -57,7 +57,7 @@ fun VerticalGrid(
             val columnY = Array(columns) { 0 }
             placeables.forEachIndexed { index, placeable ->
                 val column = index % columns
-                placeable.place(
+                placeable.placeRelative(
                     x = column * itemWidth,
                     y = columnY[column]
                 )

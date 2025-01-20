@@ -18,25 +18,13 @@ package com.example.jetsnack.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.compose.runtime.Providers
-import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.setContent
-import androidx.core.view.WindowCompat
-import com.example.jetsnack.ui.utils.SysUiController
-import com.example.jetsnack.ui.utils.SystemUiController
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-
-        // This app draws behind the system bars, so we want to handle fitting system windows
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        setContent {
-            val systemUiController = remember { SystemUiController(window) }
-            Providers(SysUiController provides systemUiController) {
-                JetsnackApp(onBackPressedDispatcher)
-            }
-        }
+        setContent { JetsnackApp() }
     }
 }
